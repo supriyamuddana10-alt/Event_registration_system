@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Campus Events | Event Registration System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-mark">CE</span><div><strong>Campus Events</strong><small>Registration System</small></div></div>
+      <nav>
+        <button class="nav-link active" data-page="dashboard">▦ <span>Dashboard</span></button>
+        <button class="nav-link" data-page="events">▣ <span>Events</span></button>
+        <button class="nav-link" data-page="students">♙ <span>Students</span></button>
+        <button class="nav-link" data-page="registrations">☷ <span>Registrations</span></button>
+      </nav>
+      <div class="sidebar-note"><strong>Offline mode</strong><p>Your data is saved on this device in your browser.</p></div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div><p class="eyebrow">COLLEGE EVENT MANAGEMENT</p><h1 id="page-title">Dashboard</h1></div>
+        <div class="top-actions"><span class="offline-pill"><i></i> Offline ready</span><button class="btn btn-light" id="exportBtn">↓ Export backup</button><label class="btn btn-light import-label">↑ Import backup<input id="importInput" type="file" accept=".json,application/json" hidden></label></div>
+      </header>
+
+      <section id="dashboard-page" class="page active">
+        <div class="welcome"><div><p class="eyebrow">OVERVIEW</p><h2>Manage your college events</h2><p>Keep events, students and registrations organized in one place.</p></div><button class="btn btn-primary" data-go="events">＋ Add an event</button></div>
+        <div class="stats-grid">
+          <article class="stat-card"><span class="stat-icon purple">▣</span><p>Total events</p><strong id="statEvents">0</strong><small>Events created</small></article>
+          <article class="stat-card"><span class="stat-icon blue">♙</span><p>Total students</p><strong id="statStudents">0</strong><small>Students added</small></article>
+          <article class="stat-card"><span class="stat-icon green">☷</span><p>Registrations</p><strong id="statRegistrations">0</strong><small>All event registrations</small></article>
+          <article class="stat-card"><span class="stat-icon orange">!</span><p>Over capacity</p><strong id="statOver">0</strong><small>Events need attention</small></article>
+        </div>
+        <div class="content-grid">
+          <section class="panel"><div class="panel-heading"><div><h3>Recent events</h3><p>Your latest created events</p></div><button class="text-btn" data-go="events">View all →</button></div><div id="dashboardEvents" class="table-wrap"></div></section>
+          <section class="panel"><div class="panel-heading"><div><h3>Capacity alerts</h3><p>Events exceeding their limit</p></div></div><div id="dashboardAlerts" class="alert-list"></div></section>
+        </div>
+      </section>
+
+      <section id="events-page" class="page">
+        <div class="section-toolbar"><div><h2>Events</h2><p>Create and manage college events.</p></div><button class="btn btn-primary" id="addEventBtn">＋ Add event</button></div>
+        <div class="panel"><div class="filters"><input id="eventSearch" class="search" placeholder="Search events by name or venue..."><select id="eventFilter"><option value="all">All events</option><option value="available">Has available seats</option><option value="full">Full</option><option value="over">Over capacity</option></select></div><div id="eventsTable" class="table-wrap"></div></div>
+      </section>
+
+      <section id="students-page" class="page">
+        <div class="section-toolbar"><div><h2>Students</h2><p>Maintain student information.</p></div><button class="btn btn-primary" id="addStudentBtn">＋ Add student</button></div>
+        <div class="panel"><div class="filters"><input id="studentSearch" class="search" placeholder="Search by name, roll number or email..."></div><div id="studentsTable" class="table-wrap"></div></div>
+      </section>
+
+      <section id="registrations-page" class="page">
+        <div class="section-toolbar"><div><h2>Registrations</h2><p>Register students and view event participants.</p></div><button class="btn btn-primary" id="addRegistrationBtn">＋ Register student</button></div>
+        <div class="panel"><div class="filters"><input id="registrationSearch" class="search" placeholder="Search student or event..."><select id="registrationEventFilter"><option value="all">All events</option></select></div><div id="registrationsTable" class="table-wrap"></div></div>
+      </section>
+    </main>
+  </div>
+
+  <div id="modalBackdrop" class="modal-backdrop hidden">
+    <div class="modal">
+      <div class="modal-header"><div><p class="eyebrow" id="modalEyebrow">DETAILS</p><h2 id="modalTitle">Add item</h2></div><button class="icon-btn" id="closeModal" aria-label="Close">×</button></div>
+      <form id="modalForm"><div id="modalFields" class="form-grid"></div><p id="formMessage" class="form-message"></p><div class="modal-actions"><button type="button" class="btn btn-light" id="cancelModal">Cancel</button><button type="submit" class="btn btn-primary" id="saveModal">Save</button></div></form>
+    </div>
+  </div>
+  <div id="toast" class="toast"></div>
+  <script src="app.js"></script>
+</body>
+</html>
